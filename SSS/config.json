@@ -1,0 +1,7 @@
+{
+    "DESIGN_NAME": "SSS",
+    "VERILOG_FILES": ["dir::src/SSS.sv"],
+    "CLOCK_PORT": "CLK",
+    "CLOCK_PERIOD": 10.0,
+    "FP_SIZING": "relative"
+}
