@@ -40,33 +40,53 @@ The verified RTL was pushed through the open-source **OpenLane 2** cloud-based E
 *   **Sign-off Verification:** Passed full Design Rule Checking (DRC) and Layout Versus Schematic (LVS) checks.
 
 ### Design Metrics & Physical Results
-Below is a summary extracted from `metrics.json` after the sign-off stage:
+Below is a summary extracted from `metrics.json` after the sign‑off stage:
 
 | Metric | Value / Result |
 | :--- | :--- |
-| **Target PDK** | SkyWater sky130 / IHP sg13g2 (Choose yours) |
-| **Core Utilization** | [e.g., 35%] |
-| **Die Area** | [e.g., 0.15] mm² |
-| **Gate Count** | [e.g., 1,200] cells |
-| **Max Clock Frequency** | [e.g., 50] MHz |
-| **Worst Negative Slack (WNS)** | [e.g., 2.34] ns (Met Timing) |
-| **DRC / LVS Violations** | 0 / 0 (Clean) |
+| **Target PDK** | SkyWater sky130 / IHP sg13g2 (select as applicable) |
+| **Core Utilization** | ~53% |
+| **Die Area** | 0.0143 mm² (≈14,327 µm²) |
+| **Core Area** | 0.01065 mm² (≈10,650 µm²) |
+| **Gate Count (Std Cells)** | 720 |
+| **Sequential Cells** | 80 |
+| **Combinational Cells** | 370 |
+| **Clock Buffers / Inverters** | 10 / 6 |
+| **Worst Negative Slack (WNS)** | 0 ns (timing met across all corners) |
+| **Worst Setup Slack** | 0.40–5.68 ns depending on corner |
+| **Worst Hold Slack** | 0.11–0.85 ns depending on corner |
+| **Clock Skew (worst)** | ±0.26 ns |
+| **Fanout Violations** | 3 (persistent across corners) |
+| **Slew / Cap Violations** | 0 |
+| **Power (Total)** | ~0.00075 W (internal + switching, leakage negligible) |
+| **Routing Wirelength** | ~10,748 µm |
+| **Routing Vias** | 3,945 (all single‑cut) |
+| **Routing DRC Errors** | 0 (clean after iteration 5) |
+| **Antenna Violations** | 0 |
+| **Disconnected Pins** | 9 (none critical) |
+| **IR Drop (worst)** | ~0.000685 V |
+| **Power Grid Drop (worst)** | ~0.000685 V |
+| **DRC / LVS Violations** | 0 / 0 (clean) |
+| **XOR Differences** | 0 |
+| **Magic / KLayout DRC Errors** | 0 / 0 |
 
 ---
 
 ## 📁 Repository Structure
 
 ```text
-├── RTL/                       # Verilog Source Files (.v)
-│   ├── security_safe_top.v    # Top-level module coordinating FPGA/ASIC boundaries
-│   ├── fsm_controller.v       # Main security state machine
-│   └── [...other modules...]  # Marquee, 7-segment, password filter modules
-├── openlane_run/              # Final run directory from OpenLane 2
-│   ├── config.json            # OpenLane 2 configuration parameters
-│   └── final/                 # Final sign-off outputs (GDSII, LEF, DEF, SPICE)
-├── metrics.json               # Full synthesis/timing/routing reports summary
-├── layout_gds/                # Extracted GDSII view for quick inspection
-└── README.md                  # Project documentation
+├── SSS/                  # Main project directory
+│   ├── src/              # Source code files
+│   ├── SSS.sv            # SystemVerilog design file
+│   └── config.json       # Configuration settings
+├── demo/                 # Demo materials and examples
+│   ├── README.md         # Documentation for demo usage
+├── final/                # Final outputs or deliverables
+├── gds/                  # Layout and design files
+│   ├── SSS.gds           # GDSII layout file
+│   ├── SSS.png           # Image preview of layout
+├── README.md             # Main project documentation
+└── metrics.json          # Performance and metrics data
 ```
 
 ---
@@ -86,5 +106,5 @@ Due to GitHub's file size limitations, the full high-definition demonstration vi
 
 ## 💡 Key Engineering Takeaways
 1.  **Clock & Reset Strategies:** Managed the architectural transition from FPGA-specific board global clock buffers to standard cell library clock trees in ASIC.
-2.  **Physical Design Constraints:** Fine-tuned `config.json` parameters (e.g., `FP_CORE_UTIL`, `PL_TARGET_DENSITY`) in OpenLane 2 to guarantee successful routing without congestion issues.
+2.  **Physical Design Constraints:** Fine-tuned `config.json` parameters in OpenLane 2 to guarantee successful routing without congestion issues.
 3.  **Timing Closure:** Analysed Static Timing Analysis (STA) reports to resolve critical paths within the FSM transition logic.
