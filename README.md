@@ -44,7 +44,7 @@ Below is a summary extracted from `metrics.json` after the sign‑off stage:
 
 | Metric | Value / Result |
 | :--- | :--- |
-| **Target PDK** | SkyWater sky130 / IHP sg13g2 (select as applicable) |
+| **Target PDK** | SkyWater sky130 |
 | **Core Utilization** | ~53% |
 | **Die Area** | 0.0143 mm² (≈14,327 µm²) |
 | **Core Area** | 0.01065 mm² (≈10,650 µm²) |
@@ -104,5 +104,5 @@ Due to GitHub's file size limitations, the full high-definition demonstration vi
 
 ## Key Engineering Takeaways
 1.  **Clock & Reset Strategies:** Managed the architectural transition from FPGA-specific board global clock buffers to standard cell library clock trees in ASIC.
-2.  **Physical Design Constraints:** Establish appropriate `config.json` parameters in OpenLane 2 to guarantee successful routing without congestion issues.
+2.  **Physical Design Constraints:** Established appropriate `config.json` parameters in OpenLane 2 to guarantee successful routing without congestion issues.
 3.  **Timing Closure:** Optimized critical paths within FSM transition logic, validating timing closure through OpenLane STA metric reports.
