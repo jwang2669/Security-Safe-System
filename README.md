@@ -7,7 +7,7 @@ An end-to-end digital IC design project showcasing the full hardware development
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project implements a hardware-level **Security Safe System** featuring robust password enforcement and anti-intrusion mechanisms. While the core logic serves as a functional vehicle, the primary objective is to demonstrate proficiency in handling the gap between FPGA emulation and physical ASIC implementation (RTL-to-GDSII).
 
@@ -19,7 +19,7 @@ This project implements a hardware-level **Security Safe System** featuring robu
 
 ---
 
-## 🛠️ Hardware Prototyping (FPGA)
+## Hardware Prototyping (FPGA)
 
 The design was first validated via hardware-in-the-loop testing to ensure functional correctness under real-world timing constraints.
 
@@ -29,7 +29,7 @@ The design was first validated via hardware-in-the-loop testing to ensure functi
 
 ---
 
-## 🚀 ASIC Implementation Flow (OpenLane 2)
+## ASIC Implementation Flow (OpenLane 2)
 
 The verified RTL was pushed through the open-source **OpenLane 2** cloud-based EDA toolchain to generate the final physical layout. 
 
@@ -53,8 +53,6 @@ Below is a summary extracted from `metrics.json` after the sign‑off stage:
 | **Combinational Cells** | 370 |
 | **Clock Buffers / Inverters** | 10 / 6 |
 | **Worst Negative Slack (WNS)** | 0 ns (timing met across all corners) |
-| **Worst Setup Slack** | 0.40–5.68 ns depending on corner |
-| **Worst Hold Slack** | 0.11–0.85 ns depending on corner |
 | **Clock Skew (worst)** | ±0.26 ns |
 | **Fanout Violations** | 3 (persistent across corners) |
 | **Slew / Cap Violations** | 0 |
@@ -72,7 +70,7 @@ Below is a summary extracted from `metrics.json` after the sign‑off stage:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 ├── SSS/                  # Main project directory
@@ -81,7 +79,7 @@ Below is a summary extracted from `metrics.json` after the sign‑off stage:
 │   └── config.json       # Configuration settings
 ├── demo/                 # Demo materials and examples
 │   ├── README.md         # Documentation for demo usage
-├── final/                # Final outputs or deliverables
+├── final/                # Final sign-off outputs or deliverables
 ├── gds/                  # Layout and design files
 │   ├── SSS.gds           # GDSII layout file
 │   ├── SSS.png           # Image preview of layout
@@ -91,7 +89,7 @@ Below is a summary extracted from `metrics.json` after the sign‑off stage:
 
 ---
 
-## 📺 Demonstration & Media
+## Demonstration & Media
 
 Due to GitHub's file size limitations, the full high-definition demonstration video (260 MB) is hosted externally. 
 
@@ -104,7 +102,7 @@ Due to GitHub's file size limitations, the full high-definition demonstration vi
 
 ---
 
-## 💡 Key Engineering Takeaways
+## Key Engineering Takeaways
 1.  **Clock & Reset Strategies:** Managed the architectural transition from FPGA-specific board global clock buffers to standard cell library clock trees in ASIC.
-2.  **Physical Design Constraints:** Fine-tuned `config.json` parameters in OpenLane 2 to guarantee successful routing without congestion issues.
-3.  **Timing Closure:** Analysed Static Timing Analysis (STA) reports to resolve critical paths within the FSM transition logic.
+2.  **Physical Design Constraints:** Establish appropriate `config.json` parameters in OpenLane 2 to guarantee successful routing without congestion issues.
+3.  **Timing Closure:** Optimized critical paths within FSM transition logic, validating timing closure through OpenLane STA metric reports.
